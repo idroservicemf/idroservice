@@ -493,7 +493,7 @@
             font-weight: 600;
             transition: all 0.3s ease;
             opacity: 0;
-            animation: fadeInUp 1s ease 0.6s forwards;ù
+            animation: fadeInUp 1s ease 0.6s forwards;
         }
 
         .cta-button:hover {
@@ -832,3 +832,196 @@
         .mb-3 { margin-bottom: 1.5rem; }
         .mt-2 { margin-top: 1rem; }
         .mt-3 { margin-top: 1.5rem; }
+    
+
+
+
+/* ==========================================
+   GALLERIE FOTOGRAFICHE DEI SERVIZI
+   ========================================== */
+
+/* Immagini dei servizi cliccabili */
+.service-image.gallery-trigger {
+    cursor: pointer;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+    outline-offset: -5px;
+}
+
+.service-image.gallery-trigger:focus-visible {
+    outline: 3px solid var(--primary-blue);
+}
+
+/* Scritta che invita a cliccare */
+.gallery-hint {
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.35rem 0.8rem;
+    border: 1px solid rgba(255,255,255,0.75);
+    border-radius: 20px;
+    background: rgba(15,23,42,0.18);
+}
+
+/* Finestra della galleria */
+.gallery-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    padding: 2rem 1rem;
+    background: rgba(15,23,42,0.82);
+    overflow-y: auto;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Apertura della finestra */
+.gallery-modal.open {
+    display: flex;
+}
+
+/* Contenitore della galleria */
+.gallery-modal-content {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+/* Titolo della galleria */
+.gallery-modal-content h2 {
+    margin: 0 3rem 0.4rem 0;
+    color: var(--primary-blue);
+    text-align: center;
+}
+
+/* Descrizione */
+.gallery-description {
+    margin-bottom: 1.5rem;
+    color: var(--text-light);
+    text-align: center;
+}
+
+/* Pulsante chiusura */
+.gallery-close {
+    position: absolute;
+    top: 0.7rem;
+    right: 1rem;
+    width: 42px;
+    height: 42px;
+    border: 0;
+    border-radius: 50%;
+    background: var(--water-gradient);
+    color: white;
+    font-size: 1.8rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+/* Griglia delle 9 fotografie */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+/* Singola fotografia */
+.gallery-photo {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #e2e8f0;
+}
+
+/* Immagini */
+.gallery-photo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+/* Effetto quando si passa sopra una foto */
+.gallery-photo:hover img {
+    transform: scale(1.05);
+}
+
+/* Messaggio quando manca una fotografia */
+.gallery-photo.image-missing::after {
+    content: "Inserisci foto " attr(data-number);
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #64748b;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* Blocca lo scorrimento della pagina con galleria aperta */
+body.gallery-open {
+    overflow: hidden;
+}
+
+/* Adattamento per tablet e smartphone */
+@media (max-width: 650px) {
+
+    .gallery-modal-content {
+        padding: 1.5rem 1rem;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.7rem;
+    }
+
+}
+
+/* Adattamento per schermi molto piccoli */
+@media (max-width: 380px) {
+
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* IMMAGINI DI COPERTINA DEI SERVIZI */
+
+.service-image.gallery-trigger {
+    height: 220px;
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.service-image.gallery-trigger .service-cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    display: block;
+}
+
+/* Pulsante sopra l'immagine */
+.service-image.gallery-trigger .gallery-hint {
+    position: absolute;
+    z-index: 2;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+}
